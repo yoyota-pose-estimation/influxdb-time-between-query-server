@@ -1,5 +1,5 @@
 {
-  "name": "back-end",
+  "name": "time-between-query-server",
   "version": "0.1.0",
   "scripts": {
     "dev": "nodemon src/index.js",

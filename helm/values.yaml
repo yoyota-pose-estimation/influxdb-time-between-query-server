@@ -1,0 +1,56 @@
+replicaCount: 1
+
+image:
+  repository: docker.pkg.github.com/yoyota-pose-estimation/influxdb-time-between-query-server/image
+  tag: latest
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: 
+  - name: regcred-github-com
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  name:
+
+podSecurityContext:
+  fsGroup: 2000
+
+securityContext:
+  capabilities:
+    drop:
+    - ALL
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: time-between-query.dudaji.org
+      paths: ["/"]
+  tls:
+    - hosts:
+        - time-between-query.dudaji.org
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
