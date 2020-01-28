@@ -1,0 +1,14 @@
+apiVersion: skaffold/v1
+kind: Config
+build:
+  artifacts:
+    - image: yoyota/influxdb-time-between-query-server
+deploy:
+  helm:
+    releases:
+      - name: time-between-query
+        namespace: yoyota
+        chartPath: helm
+        setValueTemplates:
+          image.repository: "{{.IMAGE_NAME}}"
+          image.tag: "{{.DIGEST_HEX}}"
