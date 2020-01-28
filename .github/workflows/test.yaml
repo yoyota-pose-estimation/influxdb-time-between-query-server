@@ -5,6 +5,11 @@ on:
 
 jobs:
   test:
+    services:
+      influxdb:
+        image: influxdb:alpine
+        ports:
+          - 8086:8086
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1

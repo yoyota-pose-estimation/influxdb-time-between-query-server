@@ -1,3 +1,7 @@
+influxdb:
+  dsn: "https://influxdb.dudaji.org/yoyota"
+  query: 'SELECT "distance" from "forward_head_posture"'
+
 replicaCount: 1
 
 image:

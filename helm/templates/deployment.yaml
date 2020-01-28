@@ -27,6 +27,11 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: INFLUXDB_DSN
+              value: {{ .Values.influxdb.dsn }}
+            - name: QUERY
+              value: {{ .Values.influxdb.query }}
           ports:
             - name: http
               containerPort: 8080
