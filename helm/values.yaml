@@ -41,9 +41,7 @@ ingress:
   hosts:
     - host: time-between-query.dudaji.org
       paths: ["/"]
-  tls:
-    - hosts:
-        - time-between-query.dudaji.org
+  tls: []
 
 resources:
   limits:
