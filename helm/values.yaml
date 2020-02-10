@@ -2,7 +2,7 @@ influxdb:
   dsn: "https://influxdb.dudaji.org/yoyota"
   query: 'SELECT "distance" from "forward_head_posture"'
 
-replicaCount: 1
+replicaCount: 4
 
 image:
   repository: docker.pkg.github.com/yoyota-pose-estimation/influxdb-time-between-query-server/image
