@@ -1,3 +1,1 @@
-# express-starter
-
-express starter repository
+micro service to query influxdb
