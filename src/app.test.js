@@ -16,7 +16,7 @@ test("test root route", async () => {
   const influx = new Influx.InfluxDB(testInfluxDBDSN)
   await influx.createDatabase("test")
 
-  const now = new Date().getTime()
+  const now = new Date()
   await influx.writePoints([
     {
       fields: { value: 0.64 },
@@ -25,6 +25,9 @@ test("test root route", async () => {
     }
   ])
 
-  const res = await request(app).get(`/?time=${now}`)
-  expect(res.body).toEqual({ value: 0.64 })
+  const nanoTimeNow = now.getTime() * 10 ** 6
+  const res = await request(app).get(`/?time=${nanoTimeNow}`)
+  const { value, time } = res.body
+  expect(value).toBe(0.64)
+  expect(time).toBe(nanoTimeNow)
 })

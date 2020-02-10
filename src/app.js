@@ -26,8 +26,10 @@ app.get("/", async (req, res) => {
     res.json({})
     return
   }
-  delete closestResult.time
-  res.json(closestResult)
+  res.json({
+    ...closestResult,
+    time: parseInt(closestResult.time.getNanoTime(), 10)
+  })
 })
 
 module.exports = app
